@@ -93,7 +93,7 @@ export function HeroShowcase() {
   const session = SESSIONS[active];
 
   return (
-    <div className="relative mx-auto h-[540px] w-full max-w-[560px]">
+    <div className="relative mx-auto w-full max-w-[560px] sm:h-[540px]">
       {/* Soft lime glow behind the whole card */}
       <div
         aria-hidden
@@ -101,7 +101,7 @@ export function HeroShowcase() {
       />
 
       {/* Back panel — lime, textured, tilted (peeks bottom-left) */}
-      <div className="absolute -left-2 top-24 h-[380px] w-56 -rotate-[6deg] overflow-hidden rounded-3xl bg-lime shadow-xl">
+      <div className="absolute -left-2 top-24 hidden h-[380px] w-56 -rotate-[6deg] overflow-hidden rounded-3xl bg-lime shadow-xl sm:block">
         <div
           className="absolute inset-0 opacity-20"
           style={{
@@ -112,7 +112,7 @@ export function HeroShowcase() {
       </div>
 
       {/* Back panel — photo, tilted the other way (peeks top-right) */}
-      <div className="absolute right-0 top-0 h-72 w-60 rotate-[6deg] overflow-hidden rounded-3xl shadow-xl ring-1 ring-white/10">
+      <div className="absolute right-0 top-0 hidden h-72 w-60 rotate-[6deg] overflow-hidden rounded-3xl shadow-xl ring-1 ring-white/10 sm:block">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={galleryImages[0]}
@@ -124,7 +124,7 @@ export function HeroShowcase() {
       </div>
 
       {/* Notes card */}
-      <div className="absolute left-10 top-8 z-10 w-[420px] max-w-[88%] rounded-2xl bg-panel shadow-2xl ring-1 ring-white/10">
+      <div className="relative z-10 w-full rounded-2xl bg-panel shadow-2xl ring-1 ring-white/10 sm:absolute sm:left-10 sm:top-8 sm:w-[420px] sm:max-w-[88%]">
         {/* window bar */}
         <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
           <span className="h-3 w-3 rounded-full bg-orange" />
@@ -191,7 +191,7 @@ export function HeroShowcase() {
       </div>
 
       {/* Floating video-call tile with the real film */}
-      <div className="absolute bottom-2 right-0 z-20 w-40 overflow-hidden rounded-2xl bg-midnight shadow-2xl ring-1 ring-white/15">
+      <div className="relative z-20 mx-auto mt-5 w-40 overflow-hidden rounded-2xl bg-midnight shadow-2xl ring-1 ring-white/15 sm:absolute sm:bottom-2 sm:right-0 sm:mt-0">
         <video
           className="aspect-[3/4] w-full object-cover"
           autoPlay
