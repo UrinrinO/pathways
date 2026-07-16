@@ -9,7 +9,7 @@ import { ScrollHighlight } from "@/components/sample-a/scroll-highlight";
 import { galleryImages, heroImage } from "@/lib/images";
 import { CTABand, Section } from "@/components/pages/shared/blocks";
 import { PageHero } from "@/components/pages/shared/page-hero";
-import { ApproachAccordion } from "@/components/pages/about/approach-accordion";
+import { ApproachGrid } from "@/components/pages/about/approach-grid";
 import { NotShowcase } from "@/components/pages/about/not-showcase";
 import { VisionPanel } from "@/components/pages/about/vision-panel";
 import { LeadsColumns } from "@/components/pages/about/leads-columns";
@@ -70,21 +70,36 @@ export default function AboutPage() {
         </ScrollFade>
       </Section>
 
-      {/* 2 — Our approach (width-accordion centrepiece) */}
+      {/* 2 — Our approach (sticky title left, cards flow right) */}
       <section id="approach" className="relative bg-paper">
         <Splashes variant="a" />
         <Container className="relative py-20 md:py-28">
           <ScrollFade>
-            <div className="max-w-2xl">
-              <Eyebrow>Our approach</Eyebrow>
-              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-                Four principles behind every session.
-              </h2>
-              <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-                Hover a principle to open it — or let them cycle.
-              </p>
+            <div className="grid gap-12 lg:grid-cols-[1fr_2fr] lg:gap-16">
+              {/* fixed title block */}
+              <div className="lg:sticky lg:top-32 lg:self-start">
+                <span className="inline-flex items-center gap-2 rounded-full bg-lime/15 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink ring-1 ring-lime/25">
+                  Our approach
+                </span>
+                <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
+                  Four principles behind every session.
+                </h2>
+                <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+                  Not a classroom — every session runs on the same four
+                  principles.
+                </p>
+                <a
+                  href="/programme"
+                  className="group mt-8 inline-flex items-center gap-2.5 rounded-full bg-ink px-7 py-4 text-[15px] font-semibold text-snow transition-colors hover:bg-carbon"
+                >
+                  <span className="text-lime">✦</span>
+                  See the programme
+                </a>
+              </div>
+
+              {/* cards flow past the sticky title */}
+              <ApproachGrid />
             </div>
-            <ApproachAccordion />
           </ScrollFade>
         </Container>
       </section>
