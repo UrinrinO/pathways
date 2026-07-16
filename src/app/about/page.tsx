@@ -2,11 +2,18 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/sample-a/nav";
 import { Footer } from "@/components/sample-a/footer";
 import { Reveal } from "@/components/reveal";
-import { Button, Container, Eyebrow } from "@/components/sample-a/ui";
+import { Container, Eyebrow } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
+import { ScrollFade } from "@/components/sample-a/scroll-fade";
 import { Parallax } from "@/components/motion/parallax";
 import { galleryImages } from "@/lib/images";
-import { TechOrbit } from "@/components/pages/about/tech-orbit";
+import {
+  Breadcrumbs,
+  SoftCard,
+  NumberCard,
+  CTABand,
+  Section,
+} from "@/components/pages/shared/blocks";
 
 export const metadata: Metadata = {
   title: "About — Pathways",
@@ -15,6 +22,16 @@ export const metadata: Metadata = {
 };
 
 const HERO_CHIPS = ["Ages 16–25", "Cardiff", "Free to join", "Creative tech hub"];
+
+const DISCIPLINES = [
+  "Create",
+  "Communicate",
+  "Market",
+  "Organise",
+  "Build businesses",
+  "Solve problems",
+  "Reach audiences",
+];
 
 const APPROACH = [
   {
@@ -62,8 +79,9 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-paper">
         <Splashes variant="a" />
-        <Container className="relative py-24 md:py-32">
+        <Container className="relative pb-20 pt-14 md:pb-28 md:pt-20">
           <Reveal className="max-w-4xl">
+            <Breadcrumbs page="About" />
             <Eyebrow>About Pathways</Eyebrow>
             <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
               Creativity is already there. Pathways helps connect it to what
@@ -80,8 +98,9 @@ export default function AboutPage() {
             {HERO_CHIPS.map((c) => (
               <span
                 key={c}
-                className="rounded-full border border-line bg-snow px-4 py-2 text-sm font-medium text-ink-soft"
+                className="inline-flex items-center gap-2 rounded-full bg-snow px-4 py-2 text-sm font-medium text-ink-soft shadow-[0_12px_34px_-24px_rgba(14,18,24,0.5)]"
               >
+                <span className="h-1.5 w-1.5 rounded-full bg-lime" />
                 {c}
               </span>
             ))}
@@ -90,10 +109,10 @@ export default function AboutPage() {
       </section>
 
       {/* Why we created Pathways */}
-      <section className="bg-snow">
-        <Container className="py-24 md:py-32">
+      <Section className="bg-snow">
+        <ScrollFade>
           <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:gap-16">
-            <Reveal>
+            <div>
               <Eyebrow>Why we created Pathways</Eyebrow>
               <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
                 The gap between creative energy and a clear next move.
@@ -108,9 +127,9 @@ export default function AboutPage() {
                   />
                 </Parallax>
               </div>
-            </Reveal>
+            </div>
 
-            <Reveal delay={120} className="space-y-6 lg:pt-16">
+            <div className="space-y-6 lg:pt-16">
               <p className="text-lg leading-relaxed text-ink-soft">
                 Many young people are creative, digitally curious and full of
                 ideas, but lack clear guidance, relevant networks and practical
@@ -125,105 +144,120 @@ export default function AboutPage() {
               <p className="text-2xl font-bold tracking-tight text-ink md:text-3xl">
                 Pathways exists to close that gap.
               </p>
-            </Reveal>
+            </div>
           </div>
-        </Container>
-      </section>
+        </ScrollFade>
+      </Section>
 
-      {/* What Pathways is not — standout orbit */}
+      {/* What Pathways is not */}
       <section className="relative overflow-hidden bg-paper">
         <Splashes variant="d" />
-        <Container className="relative py-24 md:py-32">
-          <div className="grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
-            <Reveal>
-              <Eyebrow>What Pathways is not</Eyebrow>
-              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-                We&apos;re not trying to turn every creative into a coder.
-              </h2>
-              <p className="mt-6 text-lg leading-relaxed text-ink-soft">
-                Technology is much wider than coding — it shapes how people
-                create, communicate, market, organise, build businesses, solve
-                problems and reach audiences.
-              </p>
-              <p className="mt-4 text-lg leading-relaxed text-ink">
-                Pathways helps you find where{" "}
-                <span className="font-semibold text-clay">you</span> fit in that
-                wider world.
-              </p>
-            </Reveal>
-            <Reveal delay={120}>
-              <TechOrbit />
-            </Reveal>
-          </div>
+        <Container className="relative py-20 md:py-28">
+          <ScrollFade>
+            <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
+              <div>
+                <Eyebrow>What Pathways is not</Eyebrow>
+                <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
+                  We&apos;re not trying to turn every creative into a coder.
+                </h2>
+                <p className="mt-6 text-lg leading-relaxed text-ink-soft">
+                  Technology is much wider than coding — it shapes how people
+                  create, communicate, market, organise, build businesses, solve
+                  problems and reach audiences.
+                </p>
+                <p className="mt-4 text-lg leading-relaxed text-ink">
+                  Pathways helps you find where{" "}
+                  <span className="font-semibold text-clay">you</span> fit in
+                  that wider world.
+                </p>
+              </div>
+
+              <SoftCard>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-lime">
+                  Technology touches all of this
+                </p>
+                <div className="mt-5 flex flex-wrap gap-2.5">
+                  {DISCIPLINES.map((d) => (
+                    <span
+                      key={d}
+                      className="inline-flex items-center gap-2 rounded-full bg-paper px-4 py-2.5 text-sm font-semibold text-ink"
+                    >
+                      <span className="h-2 w-2 rounded-full bg-lime" />
+                      {d}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-6 text-[15px] leading-relaxed text-ink-soft">
+                  Coding is one door into that world. Pathways opens the rest of
+                  them too.
+                </p>
+              </SoftCard>
+            </div>
+          </ScrollFade>
         </Container>
       </section>
 
       {/* Our approach */}
-      <section className="bg-snow">
-        <Container className="py-24 md:py-32">
-          <Reveal className="max-w-2xl">
+      <Section className="bg-snow">
+        <ScrollFade>
+          <div className="max-w-2xl">
             <Eyebrow>Our approach</Eyebrow>
             <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
               Four principles behind every session.
             </h2>
-          </Reveal>
+          </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {APPROACH.map((a, i) => (
               <Reveal key={a.title} delay={i * 90}>
-                <div className="group flex h-full flex-col rounded-3xl border border-line bg-paper p-8 transition-all duration-300 hover:-translate-y-1 hover:border-lime hover:shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)]">
-                  <span className="grid h-11 w-11 place-items-center rounded-full bg-ink text-sm font-bold text-lime transition-colors group-hover:bg-lime group-hover:text-lime-ink">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-6 text-xl font-bold tracking-tight text-ink">
-                    {a.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                    {a.body}
-                  </p>
-                </div>
+                <NumberCard n={String(i + 1).padStart(2, "0")} title={a.title}>
+                  {a.body}
+                </NumberCard>
               </Reveal>
             ))}
           </div>
-        </Container>
-      </section>
+        </ScrollFade>
+      </Section>
 
       {/* What makes Pathways different */}
       <section className="relative overflow-hidden bg-paper">
         <Splashes variant="b" />
-        <Container className="relative py-24 md:py-32">
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
-            <Reveal>
-              <Eyebrow>What makes Pathways different</Eyebrow>
-              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-                A different kind of room.
-              </h2>
-            </Reveal>
-            <Reveal delay={120}>
-              <ul className="grid gap-3 sm:grid-cols-2">
-                {DIFFERENT.map((d) => (
-                  <li
-                    key={d}
-                    className="flex items-start gap-3 rounded-2xl bg-snow px-5 py-4 shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)]"
-                  >
-                    <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-lime text-[11px] font-bold text-lime-ink">
-                      ✓
-                    </span>
-                    <span className="text-[15px] font-medium leading-snug text-ink">
-                      {d}
-                    </span>
-                  </li>
+        <Container className="relative py-20 md:py-28">
+          <ScrollFade>
+            <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
+              <div>
+                <Eyebrow>What makes Pathways different</Eyebrow>
+                <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
+                  A different kind of room.
+                </h2>
+                <p className="mt-6 text-lg leading-relaxed text-ink-soft">
+                  It adds up to a space that feels unlike a classroom the moment
+                  you walk in.
+                </p>
+              </div>
+              <ul className="grid gap-x-8 gap-y-4 sm:grid-cols-2">
+                {DIFFERENT.map((d, i) => (
+                  <Reveal as="li" key={d} delay={i * 60}>
+                    <div className="flex items-start gap-3">
+                      <span className="mt-0.5 grid h-6 w-6 shrink-0 place-items-center rounded-full bg-lime text-[11px] font-bold text-lime-ink">
+                        ✓
+                      </span>
+                      <span className="text-[15px] font-medium leading-snug text-ink">
+                        {d}
+                      </span>
+                    </div>
+                  </Reveal>
                 ))}
               </ul>
-            </Reveal>
-          </div>
+            </div>
+          </ScrollFade>
         </Container>
       </section>
 
-      {/* Long-term vision — bold dark statement */}
-      <section className="bg-carbon text-carbon-ink">
-        <Container className="py-24 md:py-32">
-          <Reveal className="max-w-4xl">
+      {/* Long-term vision — dark statement */}
+      <Section className="bg-carbon text-carbon-ink">
+        <ScrollFade>
+          <div className="max-w-4xl">
             <Eyebrow tone="dark">Our long-term vision</Eyebrow>
             <p className="mt-8 text-3xl font-bold leading-[1.12] tracking-tight md:text-5xl">
               To build a recognised creative tech hub in Cardiff where young
@@ -235,14 +269,14 @@ export default function AboutPage() {
               culture with the wider technology, creative and enterprise
               ecosystem.
             </p>
-          </Reveal>
-        </Container>
-      </section>
+          </div>
+        </ScrollFade>
+      </Section>
 
       {/* Who leads Pathways */}
-      <section className="bg-snow">
-        <Container className="py-24 md:py-32">
-          <Reveal className="max-w-2xl">
+      <Section className="bg-snow">
+        <ScrollFade>
+          <div className="max-w-2xl">
             <Eyebrow>Who leads Pathways</Eyebrow>
             <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
               Led by Youth4Change Wales.
@@ -251,15 +285,15 @@ export default function AboutPage() {
               Supported by a project team, facilitators, mentors, partners and
               participant representatives. Team profiles will be added soon.
             </p>
-          </Reveal>
+          </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {TEAM.map((m, i) => (
               <Reveal key={m.role} delay={i * 80}>
-                <div className="flex items-center gap-4 rounded-3xl border border-line bg-paper p-6">
+                <SoftCard className="flex items-center gap-4 p-6">
                   <span
                     aria-hidden
-                    className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-paper-3 text-lg font-bold text-ink-mute"
+                    className="grid h-14 w-14 shrink-0 place-items-center rounded-full bg-ink text-sm font-bold text-lime"
                   >
                     {m.name === "Youth4Change Wales" ? "Y4C" : "•"}
                   </span>
@@ -271,58 +305,20 @@ export default function AboutPage() {
                       {m.name}
                     </p>
                   </div>
-                </div>
+                </SoftCard>
               </Reveal>
             ))}
           </div>
-        </Container>
-      </section>
+        </ScrollFade>
+      </Section>
 
-      {/* CTA band */}
-      <section className="bg-paper">
-        <Container className="pb-24 pt-4 md:pb-32">
-          <div className="relative overflow-hidden rounded-[36px] bg-midnight px-6 py-16 md:px-14 md:py-20">
-            <div aria-hidden className="pointer-events-none absolute inset-0">
-              <div className="absolute -right-10 -top-16 h-80 w-80 rounded-full bg-lime/25 blur-[110px]" />
-              <div className="absolute -bottom-20 left-0 h-80 w-80 rounded-full bg-orange/20 blur-[110px]" />
-            </div>
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 opacity-[0.5]"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle, rgba(170,177,188,0.14) 1px, transparent 1.6px)",
-                backgroundSize: "9px 9px",
-                WebkitMaskImage:
-                  "radial-gradient(120% 120% at 70% 40%, #000, transparent 75%)",
-                maskImage:
-                  "radial-gradient(120% 120% at 70% 40%, #000, transparent 75%)",
-              }}
-            />
-            <Reveal className="relative max-w-2xl">
-              <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-lime">
-                <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-                Get involved
-              </p>
-              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-snow md:text-6xl">
-                Help shape the first Pathways cohort.
-              </h2>
-              <p className="mt-6 max-w-lg text-lg leading-relaxed text-soft-grey">
-                Whether you want to take part or help build it — there&apos;s a
-                place for you in Pathways.
-              </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Button href="/join" variant="lime" className="px-8 py-4">
-                  Join Pathways
-                </Button>
-                <Button href="/partners" variant="ghostDark">
-                  Partner with us
-                </Button>
-              </div>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
+      <CTABand
+        eyebrow="Get involved"
+        heading="Help shape the first Pathways cohort."
+        sub="Whether you want to take part or help build it — there's a place for you in Pathways."
+        primary={{ href: "/join", label: "Join Pathways" }}
+        secondary={{ href: "/partners", label: "Partner with us" }}
+      />
 
       <Footer />
     </main>

@@ -63,10 +63,10 @@ export function PhaseSwitch() {
               type="button"
               onClick={() => setActive(i)}
               aria-pressed={on}
-              className={`group flex flex-1 items-center gap-4 rounded-2xl border px-6 py-5 text-left transition-all duration-200 ${
+              className={`group flex flex-1 items-center gap-4 rounded-3xl px-6 py-5 text-left transition-all duration-300 ${
                 on
-                  ? "border-ink bg-ink text-snow shadow-[0_18px_50px_-30px_rgba(14,18,24,0.5)]"
-                  : "border-line bg-snow text-ink hover:border-ink/30"
+                  ? "bg-ink text-snow shadow-[0_22px_60px_-30px_rgba(14,18,24,0.6)]"
+                  : "bg-snow text-ink shadow-[0_18px_50px_-32px_rgba(14,18,24,0.4)] hover:-translate-y-0.5"
               }`}
             >
               <span

@@ -4,6 +4,12 @@ import { Footer } from "@/components/sample-a/footer";
 import { Container, Eyebrow, Button } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
 import { Reveal } from "@/components/reveal";
+import { ScrollFade } from "@/components/sample-a/scroll-fade";
+import {
+  Breadcrumbs,
+  SoftCard,
+  CTABand,
+} from "@/components/pages/shared/blocks";
 import { ReferralForm } from "@/components/pages/refer/referral-form";
 import { ShareRegistration } from "@/components/pages/refer/share-registration";
 
@@ -37,60 +43,59 @@ export default function ReferPage() {
       <section className="relative overflow-hidden bg-paper">
         <Splashes variant="d" />
         <Container className="relative py-20 md:py-28">
-          <Reveal className="max-w-3xl">
+          <ScrollFade className="max-w-3xl">
+            <Breadcrumbs page="Refer a young person" />
             <Eyebrow>Refer a young person</Eyebrow>
             <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
               Know someone who could thrive here?
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
               If you know a young person aged 16–25 in Cardiff who&apos;d benefit
-              from Pathways, refer them or share the registration link — we&apos;ll
-              reach out with care.
+              from Pathways, refer them or share the registration link —
+              we&apos;ll reach out with care.
             </p>
-          </Reveal>
+          </ScrollFade>
         </Container>
       </section>
 
       {/* Reassurance strip */}
       <section className="bg-snow">
-        <Container className="py-14 md:py-16">
-          <div className="grid gap-5 md:grid-cols-3">
-            {reassurances.map((r, i) => (
-              <Reveal
-                key={r.title}
-                delay={i * 90}
-                className="flex items-start gap-4 rounded-3xl bg-paper p-6"
-              >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-lime text-lime-ink">
-                  <svg
-                    aria-hidden
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.4"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="h-5 w-5"
-                  >
-                    <path d="M20 6L9 17l-5-5" />
-                  </svg>
-                </span>
-                <div>
-                  <h2 className="text-base font-bold tracking-tight text-ink">
-                    {r.title}
-                  </h2>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
-                    {r.body}
-                  </p>
+        <Container className="py-16 md:py-20">
+          <ScrollFade className="grid gap-5 md:grid-cols-3">
+            {reassurances.map((r) => (
+              <SoftCard key={r.title}>
+                <div className="flex items-start gap-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-lime text-lime-ink">
+                    <svg
+                      aria-hidden
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="h-5 w-5"
+                    >
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <div>
+                    <h2 className="text-base font-bold tracking-tight text-ink">
+                      {r.title}
+                    </h2>
+                    <p className="mt-1.5 text-sm leading-relaxed text-ink-soft">
+                      {r.body}
+                    </p>
+                  </div>
                 </div>
-              </Reveal>
+              </SoftCard>
             ))}
-          </div>
+          </ScrollFade>
         </Container>
       </section>
 
       {/* Referral form */}
-      <section className="relative bg-paper">
+      <section className="relative overflow-hidden bg-paper">
         <Splashes variant="a" />
         <Container className="relative py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
@@ -112,10 +117,10 @@ export default function ReferPage() {
         </Container>
       </section>
 
-      {/* Secondary — they can register themselves */}
+      {/* They can register themselves — dark share block */}
       <section className="bg-snow">
-        <Container className="pb-24 md:pb-32">
-          <Reveal className="overflow-hidden rounded-3xl bg-carbon p-8 text-carbon-ink md:p-12">
+        <Container className="py-16 md:py-20">
+          <ScrollFade className="overflow-hidden rounded-3xl bg-carbon p-8 text-carbon-ink shadow-[0_18px_50px_-30px_rgba(14,18,24,0.5)] md:p-12">
             <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16">
               <div>
                 <Eyebrow tone="dark">Prefer to share it?</Eyebrow>
@@ -141,9 +146,18 @@ export default function ReferPage() {
                 <ShareRegistration />
               </div>
             </div>
-          </Reveal>
+          </ScrollFade>
         </Container>
       </section>
+
+      {/* Closing CTA */}
+      <CTABand
+        eyebrow="Rather talk it through?"
+        heading="We're here to help you decide."
+        sub="If you're not sure Pathways is the right fit, get in touch — we're happy to talk through eligibility, sessions and next steps."
+        primary={{ href: "/contact", label: "Contact the team" }}
+        secondary={{ href: "/programme", label: "Explore the programme" }}
+      />
 
       <Footer />
     </main>

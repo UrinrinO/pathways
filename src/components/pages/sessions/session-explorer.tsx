@@ -55,10 +55,10 @@ export function SessionExplorer() {
               type="button"
               onClick={() => setFilter(f)}
               aria-pressed={on}
-              className={`rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 ${
+              className={`rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ${
                 on
-                  ? "border-ink bg-ink text-snow"
-                  : "border-line bg-snow text-ink-soft hover:border-ink/30 hover:text-ink"
+                  ? "bg-ink text-snow shadow-[0_16px_40px_-24px_rgba(14,18,24,0.6)]"
+                  : "bg-snow text-ink-soft shadow-[0_12px_34px_-26px_rgba(14,18,24,0.4)] hover:-translate-y-0.5 hover:text-ink"
               }`}
             >
               {f}
@@ -88,9 +88,9 @@ export function SessionExplorer() {
           return (
             <article
               key={s.n}
-              className={`group flex flex-col overflow-hidden rounded-3xl border border-line bg-snow shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)] transition-all duration-300 ${
+              className={`group flex flex-col overflow-hidden rounded-3xl bg-snow shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)] transition-all duration-300 ${
                 on
-                  ? "opacity-100"
+                  ? "opacity-100 hover:-translate-y-1"
                   : "opacity-40 grayscale hover:opacity-70"
               }`}
             >

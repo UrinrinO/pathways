@@ -2,7 +2,9 @@
 
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/reveal";
+import { ScrollFade } from "@/components/sample-a/scroll-fade";
 import { Splashes } from "@/components/sample-a/splashes";
+import { SoftCard } from "@/components/pages/shared/blocks";
 
 type Mode = "Online" | "In-person" | "Hybrid";
 
@@ -171,7 +173,7 @@ const CalIcon = (
 
 function OpportunityCard({ o }: { o: Opportunity }) {
   return (
-    <article className="group flex h-full flex-col rounded-3xl bg-snow p-6 shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)] ring-1 ring-line/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_-30px_rgba(14,18,24,0.4)]">
+    <SoftCard className="group flex h-full flex-col !p-6">
       <div className="flex items-center justify-between gap-3">
         <span className="rounded-full bg-paper-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-soft">
           {o.category}
@@ -198,7 +200,7 @@ function OpportunityCard({ o }: { o: Opportunity }) {
         </span>
       </div>
 
-      <div className="mt-5 border-t border-line pt-4">
+      <div className="mt-5 border-t border-line/70 pt-4">
         <a
           href="#"
           className="group/link inline-flex items-center gap-1.5 text-sm font-semibold text-ink"
@@ -212,7 +214,7 @@ function OpportunityCard({ o }: { o: Opportunity }) {
           </span>
         </a>
       </div>
-    </article>
+    </SoftCard>
   );
 }
 
@@ -233,8 +235,88 @@ export function OpportunitiesExplorer() {
     <section className="relative bg-paper">
       <Splashes variant="b" />
       <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-28">
-        {/* Filter pills */}
-        <Reveal>
+        {/* Opportunity of the week — dark feature band, in the flow */}
+        <ScrollFade>
+          <div className="relative overflow-hidden rounded-[32px] bg-carbon p-8 text-carbon-ink md:p-12">
+            <div aria-hidden className="pointer-events-none absolute inset-0">
+              <div className="absolute -right-16 -top-20 h-72 w-72 rounded-full bg-lime/25 blur-[100px]" />
+              <div className="absolute -bottom-24 -left-10 h-72 w-72 rounded-full bg-orange/15 blur-[100px]" />
+            </div>
+
+            <div className="relative grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-center">
+              {/* The pick */}
+              <div>
+                <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-lime">
+                  <span className="h-1.5 w-1.5 rounded-full bg-lime" />
+                  Opportunity of the week
+                </p>
+                <div className="mt-5 flex flex-wrap items-center gap-2.5">
+                  <span className="rounded-full bg-carbon-ink/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-carbon-ink/80">
+                    {featured.category}
+                  </span>
+                  <ModeChip mode={featured.mode} />
+                </div>
+                <h2 className="mt-5 max-w-xl text-3xl font-bold leading-tight tracking-tight text-snow md:text-4xl">
+                  {featured.title}
+                </h2>
+                <p className="mt-2 text-sm font-semibold text-lime">
+                  {featured.org}
+                </p>
+                <p className="mt-4 max-w-lg leading-relaxed text-carbon-ink/70">
+                  {featured.summary}
+                </p>
+                <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-medium text-carbon-ink/60">
+                  <span className="inline-flex items-center gap-1.5">
+                    {PinIcon}
+                    {featured.location}
+                  </span>
+                  <span className="inline-flex items-center gap-1.5">
+                    {CalIcon}
+                    {featured.deadline}
+                  </span>
+                </div>
+                <a
+                  href="#"
+                  className="group mt-8 inline-flex items-center gap-2 rounded-full bg-lime px-6 py-3 text-sm font-semibold text-lime-ink transition-transform hover:scale-[1.03]"
+                >
+                  View opportunity
+                  <span
+                    aria-hidden
+                    className="transition-transform duration-200 group-hover:translate-x-1"
+                  >
+                    →
+                  </span>
+                </a>
+              </div>
+
+              {/* Upcoming deadlines — fills the right side */}
+              <div className="rounded-3xl bg-carbon-ink/[0.06] p-6 ring-1 ring-carbon-ink/10">
+                <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-carbon-ink/70">
+                  <span className="h-1.5 w-1.5 rounded-full bg-orange" />
+                  Upcoming deadlines
+                </p>
+                <ul className="mt-4 flex flex-col divide-y divide-carbon-ink/10">
+                  {DEADLINES.map((d) => (
+                    <li
+                      key={d.title}
+                      className="flex items-center justify-between gap-4 py-3.5 first:pt-0 last:pb-0"
+                    >
+                      <span className="text-sm font-medium leading-snug text-snow">
+                        {d.title}
+                      </span>
+                      <span className="shrink-0 rounded-full bg-lime px-3 py-1 text-xs font-bold text-lime-ink">
+                        {d.date}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </ScrollFade>
+
+        {/* Browse — filter + dense grid */}
+        <ScrollFade className="mt-16 md:mt-20">
           <div className="flex flex-wrap items-center justify-between gap-4">
             <h2 className="text-3xl font-bold tracking-tight text-ink md:text-4xl">
               Browse opportunities
@@ -245,6 +327,7 @@ export function OpportunitiesExplorer() {
               of {OPPORTUNITIES.length}
             </p>
           </div>
+
           <div className="no-scrollbar mt-7 flex gap-2.5 overflow-x-auto pb-1">
             {CATEGORIES.map((c) => {
               const on = c === active;
@@ -256,7 +339,7 @@ export function OpportunitiesExplorer() {
                   className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                     on
                       ? "bg-ink text-snow"
-                      : "border border-line bg-snow text-ink-soft hover:border-ink/30 hover:text-ink"
+                      : "bg-snow text-ink-soft shadow-[0_10px_30px_-24px_rgba(14,18,24,0.5)] hover:text-ink"
                   }`}
                 >
                   {c}
@@ -264,10 +347,8 @@ export function OpportunitiesExplorer() {
               );
             })}
           </div>
-        </Reveal>
 
-        {/* Launch note */}
-        <Reveal delay={90}>
+          {/* Launch note */}
           <div className="mt-8 flex items-start gap-3 rounded-2xl bg-lime/15 px-5 py-4 text-sm leading-relaxed text-ink">
             <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-lime text-[11px] font-bold text-lime-ink">
               !
@@ -278,13 +359,10 @@ export function OpportunitiesExplorer() {
               the list to be first to see them.
             </p>
           </div>
-        </Reveal>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-[1.6fr_1fr] lg:items-start">
-          {/* Grid */}
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((o, i) => (
-              <Reveal key={o.title} delay={i * 70}>
+              <Reveal key={o.title} delay={(i % 3) * 80}>
                 <OpportunityCard o={o} />
               </Reveal>
             ))}
@@ -294,116 +372,95 @@ export function OpportunitiesExplorer() {
               </p>
             )}
           </div>
+        </ScrollFade>
 
-          {/* Right rail */}
-          <aside className="flex flex-col gap-6 lg:sticky lg:top-24">
-            {/* Opportunity of the week */}
-            <Reveal>
-              <div className="relative overflow-hidden rounded-3xl bg-carbon p-7 text-carbon-ink">
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute -right-10 -top-12 h-40 w-40 rounded-full bg-lime/25 blur-[70px]"
+        {/* Email capture + submit — content-full, side by side */}
+        <ScrollFade className="mt-16 md:mt-20">
+          <div className="grid gap-5 lg:grid-cols-2">
+            {/* Get opportunity updates */}
+            <SoftCard className="flex h-full flex-col justify-center bg-paper-2 !p-8 md:!p-10">
+              <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-ink-soft">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime" />
+                Stay in the loop
+              </p>
+              <h3 className="mt-5 text-2xl font-bold tracking-tight text-ink md:text-3xl">
+                Get opportunity updates
+              </h3>
+              <p className="mt-3 max-w-md leading-relaxed text-ink-soft">
+                A short, useful email when new opportunities go live. No spam,
+                unsubscribe any time.
+              </p>
+              <form
+                className="mt-6 flex flex-col gap-2.5 sm:flex-row"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <input
+                  type="email"
+                  required
+                  placeholder="you@email.com"
+                  aria-label="Email address"
+                  className="w-full rounded-full bg-snow px-5 py-3.5 text-sm text-ink shadow-[0_10px_30px_-24px_rgba(14,18,24,0.5)] outline-none transition-shadow placeholder:text-ink-mute focus:shadow-[0_0_0_2px_var(--color-lime)]"
                 />
-                <div className="relative">
-                  <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-lime">
-                    <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-                    Opportunity of the week
-                  </p>
-                  <h3 className="mt-4 text-2xl font-bold leading-snug tracking-tight text-snow">
-                    {featured.title}
-                  </h3>
-                  <p className="mt-1 text-sm font-medium text-lime">
-                    {featured.org}
-                  </p>
-                  <p className="mt-4 text-sm leading-relaxed text-carbon-ink/70">
-                    {featured.summary}
-                  </p>
-                  <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-carbon-ink/60">
-                    <span className="inline-flex items-center gap-1.5">
-                      {PinIcon}
-                      {featured.location}
-                    </span>
-                    <span className="inline-flex items-center gap-1.5">
-                      {CalIcon}
-                      {featured.deadline}
-                    </span>
-                  </div>
-                  <a
-                    href="#"
-                    className="group mt-6 inline-flex items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-lime-ink transition-transform hover:scale-[1.03]"
-                  >
-                    View opportunity
-                    <span className="transition-transform duration-200 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </a>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Upcoming deadlines */}
-            <Reveal delay={90}>
-              <div className="rounded-3xl bg-snow p-7 shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)] ring-1 ring-line/60">
-                <p className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-soft">
-                  <span className="h-1.5 w-1.5 rounded-full bg-orange" />
-                  Upcoming deadlines
-                </p>
-                <ul className="mt-5 flex flex-col divide-y divide-line">
-                  {DEADLINES.map((d) => (
-                    <li
-                      key={d.title}
-                      className="flex items-center justify-between gap-4 py-3.5 first:pt-0 last:pb-0"
-                    >
-                      <span className="text-sm font-medium leading-snug text-ink">
-                        {d.title}
-                      </span>
-                      <span className="shrink-0 rounded-full bg-paper-2 px-3 py-1 text-xs font-semibold text-clay">
-                        {d.date}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
-
-            {/* Mailing list */}
-            <Reveal delay={150}>
-              <div className="rounded-3xl bg-paper-2 p-7">
-                <h3 className="text-lg font-bold tracking-tight text-ink">
-                  Get opportunity updates
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                  A short, useful email when new opportunities go live. No spam,
-                  unsubscribe any time.
-                </p>
-                <form
-                  className="mt-5 flex flex-col gap-2.5"
-                  onSubmit={(e) => e.preventDefault()}
+                <button
+                  type="submit"
+                  className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-snow transition-colors hover:bg-carbon"
                 >
-                  <input
-                    type="email"
-                    required
-                    placeholder="you@email.com"
-                    aria-label="Email address"
-                    className="w-full rounded-full border border-line bg-snow px-5 py-3 text-sm text-ink outline-none transition-colors placeholder:text-ink-mute focus:border-ink/40"
-                  />
-                  <button
-                    type="submit"
-                    className="group inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-snow transition-colors hover:bg-carbon"
+                  Join the list
+                  <span
+                    aria-hidden
+                    className="text-lime transition-transform duration-200 group-hover:translate-x-1"
                   >
-                    Join the list
-                    <span
-                      aria-hidden
-                      className="text-lime transition-transform duration-200 group-hover:translate-x-1"
-                    >
-                      →
+                    →
+                  </span>
+                </button>
+              </form>
+            </SoftCard>
+
+            {/* Submit an opportunity */}
+            <SoftCard className="flex h-full flex-col !p-8 md:!p-10">
+              <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-ink-soft">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime" />
+                For organisations &amp; employers
+              </p>
+              <h3 className="mt-5 text-2xl font-bold tracking-tight text-ink md:text-3xl">
+                Have something worth sharing?
+              </h3>
+              <p className="mt-3 leading-relaxed text-ink-soft">
+                If you run jobs, internships, training, grants or events that
+                would genuinely help young people in Cardiff, send them our way.
+              </p>
+              <ul className="mt-5 flex flex-1 flex-col gap-2.5">
+                {[
+                  "Reach an engaged group of 16–25 year-olds",
+                  "We only share what's relevant and accessible",
+                  "Free to submit — reviewed by our team",
+                ].map((point) => (
+                  <li
+                    key={point}
+                    className="flex items-start gap-3 text-sm leading-relaxed text-ink"
+                  >
+                    <span className="mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full bg-lime text-[11px] font-bold text-lime-ink">
+                      ✓
                     </span>
-                  </button>
-                </form>
-              </div>
-            </Reveal>
-          </aside>
-        </div>
+                    {point}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="#"
+                className="group mt-7 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-snow transition-colors hover:bg-carbon"
+              >
+                Submit an opportunity
+                <span
+                  aria-hidden
+                  className="text-lime transition-transform duration-200 group-hover:translate-x-1"
+                >
+                  →
+                </span>
+              </a>
+            </SoftCard>
+          </div>
+        </ScrollFade>
       </div>
     </section>
   );

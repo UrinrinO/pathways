@@ -2,7 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/reveal";
+import { ScrollFade } from "@/components/sample-a/scroll-fade";
 import { Splashes } from "@/components/sample-a/splashes";
+import { Eyebrow } from "@/components/sample-a/ui";
+import { SoftCard } from "@/components/pages/shared/blocks";
 import { galleryImages, sessionShots } from "@/lib/images";
 
 type Article = {
@@ -126,7 +129,7 @@ const LAUNCH = [
 
 function ArticleCard({ a }: { a: Article }) {
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-snow shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)] ring-1 ring-line/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_28px_60px_-30px_rgba(14,18,24,0.4)]">
+    <SoftCard className="group flex h-full flex-col overflow-hidden !p-0">
       <div className="relative aspect-[16/10] overflow-hidden bg-paper-2">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -161,7 +164,7 @@ function ArticleCard({ a }: { a: Article }) {
           <span className="text-xs font-medium text-ink-mute">{a.read}</span>
         </div>
       </div>
-    </article>
+    </SoftCard>
   );
 }
 
@@ -178,30 +181,27 @@ export function StoriesExplorer() {
 
   return (
     <>
-      {/* Launch stories — featured prominently */}
+      {/* Launch stories — featured trio */}
       <section className="bg-snow">
         <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <Reveal className="max-w-2xl">
-            <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-ink-soft">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-lime" />
-              The launch stories
-            </p>
-            <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-              Where Pathways begins.
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-              Three pieces on what we&apos;re building, why it matters and how it
-              feels to be in the room.
-            </p>
-          </Reveal>
+          <ScrollFade>
+            <div className="max-w-2xl">
+              <Eyebrow>The launch stories</Eyebrow>
+              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
+                Where Pathways begins.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+                Three pieces on what we&apos;re building, why it matters and how it
+                feels to be in the room.
+              </p>
+            </div>
 
-          {/* Lead feature + two stacked */}
-          <div className="mt-14 grid gap-6 lg:grid-cols-2">
-            {/* Big lead */}
-            <Reveal>
+            {/* Big dark lead + two SoftCards */}
+            <div className="mt-14 grid gap-6 lg:grid-cols-2">
+              {/* Lead */}
               <a
                 href="#"
-                className="group relative flex min-h-[420px] flex-col justify-end overflow-hidden rounded-[32px] bg-carbon p-8 text-carbon-ink md:p-10 lg:min-h-full"
+                className="group relative flex min-h-[440px] flex-col justify-end overflow-hidden rounded-[32px] bg-carbon p-8 text-carbon-ink shadow-[0_30px_80px_-40px_rgba(14,18,24,0.5)] transition-transform duration-300 hover:-translate-y-1 md:p-10 lg:min-h-full"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -209,7 +209,7 @@ export function StoriesExplorer() {
                   alt=""
                   className="absolute inset-0 h-full w-full object-cover opacity-40 transition-transform duration-[900ms] ease-out group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/70 to-midnight/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-carbon via-carbon/70 to-carbon/10" />
                 <div className="relative">
                   <span className="inline-flex rounded-full bg-lime px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-lime-ink">
                     {LAUNCH[0].tag}
@@ -217,7 +217,7 @@ export function StoriesExplorer() {
                   <h3 className="mt-5 max-w-xl text-2xl font-bold leading-tight tracking-tight text-snow md:text-3xl">
                     {LAUNCH[0].title}
                   </h3>
-                  <p className="mt-4 max-w-md leading-relaxed text-soft-grey">
+                  <p className="mt-4 max-w-md leading-relaxed text-carbon-ink/75">
                     {LAUNCH[0].body}
                   </p>
                   <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-lime">
@@ -231,49 +231,49 @@ export function StoriesExplorer() {
                   </span>
                 </div>
               </a>
-            </Reveal>
 
-            {/* Two stacked */}
-            <div className="flex flex-col gap-6">
-              {LAUNCH.slice(1).map((s, i) => (
-                <Reveal key={s.title} delay={(i + 1) * 90}>
-                  <a
-                    href="#"
-                    className="group grid gap-5 overflow-hidden rounded-[32px] bg-paper-2 p-5 transition-colors hover:bg-paper-3 sm:grid-cols-[1fr_1.1fr] sm:p-6"
+              {/* Two stacked SoftCards */}
+              <div className="flex flex-col gap-6">
+                {LAUNCH.slice(1).map((s) => (
+                  <SoftCard
+                    key={s.title}
+                    className="group grid flex-1 gap-5 overflow-hidden !p-0 sm:grid-cols-[1fr_1.15fr]"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-snow sm:aspect-auto">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={s.img}
-                        alt={s.title}
-                        className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                      />
-                    </div>
-                    <div className="flex flex-col justify-center">
-                      <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-clay">
-                        {s.tag}
-                      </span>
-                      <h3 className="mt-3 text-xl font-bold leading-snug tracking-tight text-ink">
-                        {s.title}
-                      </h3>
-                      <p className="mt-3 text-sm leading-relaxed text-ink-soft">
-                        {s.body}
-                      </p>
-                      <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
-                        Read
-                        <span
-                          aria-hidden
-                          className="text-lime transition-transform duration-200 group-hover:translate-x-1"
-                        >
-                          →
+                    <a href="#" className="contents">
+                      <div className="relative aspect-[4/3] overflow-hidden bg-paper-2 sm:aspect-auto">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={s.img}
+                          alt={s.title}
+                          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                        />
+                      </div>
+                      <div className="flex flex-col justify-center p-6">
+                        <span className="text-[11px] font-semibold uppercase tracking-[0.12em] text-clay">
+                          {s.tag}
                         </span>
-                      </span>
-                    </div>
-                  </a>
-                </Reveal>
-              ))}
+                        <h3 className="mt-3 text-xl font-bold leading-snug tracking-tight text-ink">
+                          {s.title}
+                        </h3>
+                        <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                          {s.body}
+                        </p>
+                        <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-ink">
+                          Read
+                          <span
+                            aria-hidden
+                            className="text-lime transition-transform duration-200 group-hover:translate-x-1"
+                          >
+                            →
+                          </span>
+                        </span>
+                      </div>
+                    </a>
+                  </SoftCard>
+                ))}
+              </div>
             </div>
-          </div>
+          </ScrollFade>
         </div>
       </section>
 
@@ -281,7 +281,7 @@ export function StoriesExplorer() {
       <section className="relative bg-paper">
         <Splashes variant="d" />
         <div className="relative mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <Reveal>
+          <ScrollFade>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div className="max-w-xl">
                 <h2 className="text-3xl font-bold tracking-tight text-ink md:text-4xl">
@@ -312,7 +312,7 @@ export function StoriesExplorer() {
                     className={`shrink-0 rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 ${
                       on
                         ? "bg-ink text-snow"
-                        : "border border-line bg-snow text-ink-soft hover:border-ink/30 hover:text-ink"
+                        : "bg-snow text-ink-soft shadow-[0_10px_30px_-24px_rgba(14,18,24,0.5)] hover:text-ink"
                     }`}
                   >
                     {c}
@@ -320,21 +320,21 @@ export function StoriesExplorer() {
                 );
               })}
             </div>
-          </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filtered.map((a, i) => (
-              <Reveal key={a.title} delay={(i % 3) * 90}>
-                <ArticleCard a={a} />
-              </Reveal>
-            ))}
-            {filtered.length === 0 && (
-              <p className="text-ink-soft">
-                No stories in this category yet — the first pieces are on their
-                way.
-              </p>
-            )}
-          </div>
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {filtered.map((a, i) => (
+                <Reveal key={a.title} delay={(i % 3) * 90}>
+                  <ArticleCard a={a} />
+                </Reveal>
+              ))}
+              {filtered.length === 0 && (
+                <p className="text-ink-soft">
+                  No stories in this category yet — the first pieces are on their
+                  way.
+                </p>
+              )}
+            </div>
+          </ScrollFade>
         </div>
       </section>
     </>

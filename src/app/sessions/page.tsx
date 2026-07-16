@@ -2,9 +2,16 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/sample-a/nav";
 import { Footer } from "@/components/sample-a/footer";
 import { Reveal } from "@/components/reveal";
-import { Button, Container, Eyebrow } from "@/components/sample-a/ui";
+import { Container, Eyebrow } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
+import { ScrollFade } from "@/components/sample-a/scroll-fade";
 import { SessionExplorer } from "@/components/pages/sessions/session-explorer";
+import {
+  Breadcrumbs,
+  NumberCard,
+  CTABand,
+  Section,
+} from "@/components/pages/shared/blocks";
 
 export const metadata: Metadata = {
   title: "Sessions — Pathways",
@@ -51,8 +58,9 @@ export default function SessionsPage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-paper">
         <Splashes variant="c" />
-        <Container className="relative py-24 md:py-32">
+        <Container className="relative pb-20 pt-14 md:pb-28 md:pt-20">
           <Reveal className="max-w-4xl">
+            <Breadcrumbs page="Sessions" />
             <Eyebrow>The sessions</Eyebrow>
             <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
               Inside the Pathways sessions
@@ -67,9 +75,9 @@ export default function SessionsPage() {
       </section>
 
       {/* Standout — interactive session explorer */}
-      <section className="bg-snow">
-        <Container className="py-24 md:py-32">
-          <Reveal className="max-w-2xl">
+      <Section className="bg-snow">
+        <ScrollFade>
+          <div className="max-w-2xl">
             <Eyebrow>Browse the sessions</Eyebrow>
             <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
               Six sessions. Filter by what interests you.
@@ -78,95 +86,68 @@ export default function SessionsPage() {
               Full themes and facilitators are announced soon — for now, every
               session is upcoming.
             </p>
-          </Reveal>
-          <Reveal delay={120} className="mt-12">
+          </div>
+          <div className="mt-12">
             <SessionExplorer />
-          </Reveal>
-        </Container>
-      </section>
+          </div>
+        </ScrollFade>
+      </Section>
 
       {/* Every session page includes */}
       <section className="relative overflow-hidden bg-paper">
         <Splashes variant="a" />
-        <Container className="relative py-24 md:py-32">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>Every session page includes</Eyebrow>
-            <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-              A full record of what happened.
-            </h2>
-          </Reveal>
+        <Container className="relative py-20 md:py-28">
+          <ScrollFade>
+            <div className="max-w-2xl">
+              <Eyebrow>Every session page includes</Eyebrow>
+              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
+                A full record of what happened.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+                Seven parts to every write-up, so nothing from the room gets
+                lost.
+              </p>
+            </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {INCLUDES.map((item, i) => (
-              <Reveal key={item.title} delay={i * 80}>
-                <div className="group flex h-full flex-col rounded-3xl border border-line bg-snow p-7 shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)] transition-all duration-300 hover:-translate-y-1 hover:border-lime">
-                  <span className="grid h-10 w-10 place-items-center rounded-full bg-ink text-sm font-bold text-lime transition-colors group-hover:bg-lime group-hover:text-lime-ink">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="mt-5 text-lg font-bold tracking-tight text-ink">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {INCLUDES.map((item, i) => (
+                <Reveal key={item.title} delay={i * 70}>
+                  <NumberCard
+                    n={String(i + 1).padStart(2, "0")}
+                    title={item.title}
+                  >
                     {item.body}
+                  </NumberCard>
+                </Reveal>
+              ))}
+
+              {/* Closing note — completes the grid, no dead space */}
+              <Reveal delay={INCLUDES.length * 70}>
+                <div className="flex h-full flex-col justify-center rounded-3xl bg-carbon p-8 text-carbon-ink shadow-[0_18px_50px_-30px_rgba(14,18,24,0.5)]">
+                  <span className="grid h-11 w-11 place-items-center rounded-full bg-lime/15">
+                    <span className="h-2.5 w-2.5 rounded-full bg-lime" />
+                  </span>
+                  <h3 className="mt-5 text-2xl font-bold tracking-tight">
+                    More announced soon
+                  </h3>
+                  <p className="mt-3 leading-relaxed text-carbon-ink/70">
+                    Full themes and facilitators for each session are on the way.
+                    Register your interest to hear first.
                   </p>
                 </div>
               </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={120} className="mt-10">
-            <p className="inline-flex items-center gap-3 rounded-2xl border border-line bg-snow px-6 py-4 text-sm font-medium text-ink-soft">
-              <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-lime/15">
-                <span className="h-2 w-2 rounded-full bg-lime" />
-              </span>
-              Full themes and facilitators are announced soon.
-            </p>
-          </Reveal>
-        </Container>
-      </section>
-
-      {/* CTA band */}
-      <section className="bg-paper">
-        <Container className="pb-24 pt-4 md:pb-32">
-          <div className="relative overflow-hidden rounded-[36px] bg-midnight px-6 py-16 md:px-14 md:py-20">
-            <div aria-hidden className="pointer-events-none absolute inset-0">
-              <div className="absolute -right-10 -top-16 h-80 w-80 rounded-full bg-lime/25 blur-[110px]" />
-              <div className="absolute -bottom-20 left-0 h-80 w-80 rounded-full bg-orange/20 blur-[110px]" />
             </div>
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 opacity-[0.5]"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle, rgba(170,177,188,0.14) 1px, transparent 1.6px)",
-                backgroundSize: "9px 9px",
-                WebkitMaskImage:
-                  "radial-gradient(120% 120% at 70% 40%, #000, transparent 75%)",
-                maskImage:
-                  "radial-gradient(120% 120% at 70% 40%, #000, transparent 75%)",
-              }}
-            />
-            <Reveal className="relative max-w-2xl">
-              <p className="flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.2em] text-lime">
-                <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-                Be first in the room
-              </p>
-              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-snow md:text-6xl">
-                Register your interest for the sessions.
-              </h2>
-              <p className="mt-6 max-w-lg text-lg leading-relaxed text-soft-grey">
-                Tell us you&apos;re interested and you&apos;ll be first to hear
-                about dates, themes and how to take part.
-              </p>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Button href="/join" variant="lime" className="px-8 py-4">
-                  Register your interest
-                </Button>
-              </div>
-            </Reveal>
-          </div>
+          </ScrollFade>
         </Container>
       </section>
+
+      <CTABand
+        eyebrow="Be first in the room"
+        heading="Register your interest for the sessions."
+        sub="Tell us you're interested and you'll be first to hear about dates, themes and how to take part."
+        primary={{ href: "/join", label: "Register your interest" }}
+        secondary={{ href: "/programme", label: "See the programme" }}
+      />
 
       <Footer />
     </main>

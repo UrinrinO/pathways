@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { Nav } from "@/components/sample-a/nav";
 import { Footer } from "@/components/sample-a/footer";
 import { Container, Eyebrow, ArrowLink } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
 import { Reveal } from "@/components/reveal";
+import { ScrollFade } from "@/components/sample-a/scroll-fade";
+import {
+  Breadcrumbs,
+  SoftCard,
+  CTABand,
+} from "@/components/pages/shared/blocks";
 import { ContactForm } from "@/components/pages/contact/contact-form";
 
 export const metadata: Metadata = {
@@ -49,7 +54,8 @@ export default function ContactPage() {
       <section className="relative overflow-hidden bg-paper">
         <Splashes variant="b" />
         <Container className="relative py-20 md:py-28">
-          <Reveal className="max-w-3xl">
+          <ScrollFade className="max-w-3xl">
+            <Breadcrumbs page="Contact" />
             <Eyebrow>Contact</Eyebrow>
             <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
               Get in touch.
@@ -59,20 +65,16 @@ export default function ContactPage() {
               programme or sharing an opportunity, we&apos;d like to hear from
               you.
             </p>
-          </Reveal>
+          </ScrollFade>
         </Container>
       </section>
 
       {/* Routed contact cards */}
       <section className="bg-snow">
         <Container className="py-16 md:py-24">
-          <div className="grid gap-5 md:grid-cols-3">
+          <ScrollFade className="grid gap-5 md:grid-cols-3">
             {routes.map((r, i) => (
-              <Reveal
-                key={r.title}
-                delay={i * 90}
-                className="flex flex-col rounded-3xl border border-line bg-paper p-8 transition-colors hover:border-ink/15"
-              >
+              <SoftCard key={r.title} className="flex h-full flex-col">
                 <span className="grid h-11 w-11 place-items-center rounded-full bg-lime text-lime-ink">
                   <span className="text-sm font-bold">{i + 1}</span>
                 </span>
@@ -85,19 +87,19 @@ export default function ContactPage() {
                 <div className="mt-6">
                   <ArrowLink href={r.href}>{r.cta}</ArrowLink>
                 </div>
-              </Reveal>
+              </SoftCard>
             ))}
-          </div>
+          </ScrollFade>
         </Container>
       </section>
 
       {/* Details + general form */}
-      <section className="relative bg-paper">
+      <section className="relative overflow-hidden bg-paper">
         <Splashes variant="c" />
         <Container className="relative py-20 md:py-28">
           <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
             {/* Details block — dark card for contrast */}
-            <Reveal className="flex flex-col justify-between overflow-hidden rounded-3xl bg-carbon p-8 text-carbon-ink md:p-10">
+            <Reveal className="flex flex-col justify-between overflow-hidden rounded-3xl bg-carbon p-8 text-carbon-ink shadow-[0_18px_50px_-30px_rgba(14,18,24,0.5)] md:p-10">
               <div>
                 <Eyebrow tone="dark">Contact details</Eyebrow>
                 <h2 className="mt-6 text-3xl font-bold leading-[1.08] tracking-tight md:text-4xl">
@@ -173,34 +175,14 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      {/* Foot CTA to join */}
-      <section className="bg-snow">
-        <Container className="pb-24 md:pb-32">
-          <Reveal className="flex flex-col items-start justify-between gap-6 rounded-3xl border border-line bg-paper p-8 md:flex-row md:items-center md:p-12">
-            <div>
-              <h2 className="text-2xl font-bold tracking-tight text-ink md:text-3xl">
-                Ready to take part?
-              </h2>
-              <p className="mt-3 max-w-lg leading-relaxed text-ink-soft">
-                Register your interest in a couple of minutes and we&apos;ll be
-                in touch with the next steps.
-              </p>
-            </div>
-            <Link
-              href="/join"
-              className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-ink px-7 py-4 text-[15px] font-semibold text-snow transition-colors hover:bg-carbon"
-            >
-              Register your interest
-              <span
-                aria-hidden
-                className="text-lime transition-transform duration-200 group-hover:translate-x-1"
-              >
-                →
-              </span>
-            </Link>
-          </Reveal>
-        </Container>
-      </section>
+      {/* Closing CTA */}
+      <CTABand
+        eyebrow="Ready to take part?"
+        heading="Register your interest today."
+        sub="It takes a couple of minutes, and we'll be in touch with the next steps and dates for the upcoming programme."
+        primary={{ href: "/join", label: "Register your interest" }}
+        secondary={{ href: "/programme", label: "Explore the programme" }}
+      />
 
       <Footer />
     </main>

@@ -1,58 +1,50 @@
-import Link from "next/link";
+import type { Metadata } from "next";
+import { philosophyImages } from "@/lib/images";
+import { PhilosophyParallax } from "@/components/shared/philosophy-parallax";
+import { Nav } from "@/components/sample-a/nav";
+import { Hero } from "@/components/sample-a/hero";
+import { Trust } from "@/components/sample-a/trust";
+import { Services } from "@/components/sample-a/services";
+import { Process } from "@/components/sample-a/process";
+import { Stats } from "@/components/sample-a/stats";
+import { Sessions } from "@/components/sample-a/sessions";
+import { Partners } from "@/components/sample-a/partners";
+import { CTA } from "@/components/sample-a/cta";
+import { Footer } from "@/components/sample-a/footer";
 
-const samples = [
-  {
-    href: "/sample-a",
-    tag: "Light",
-    title: "Light theme",
-    desc: "Bright, clean and open — a warm neutral base with bold type and a lime accent.",
-    accent: "bg-lime text-lime-ink",
-  },
-  {
-    href: "/sample-b",
-    tag: "Dark",
-    title: "Dark theme",
-    desc: "Bold and modern — a deep midnight base with glowing lime accents.",
-    accent: "bg-ink text-snow",
-  },
-];
+export const metadata: Metadata = {
+  title: "Pathways — Creativity linked to tech",
+  description:
+    "Pathways is a creative tech hub for young people aged 16–25 in Cardiff. Turn ideas, interests and existing skills into clearer direction, stronger digital knowledge and real opportunities.",
+};
 
-export default function Chooser() {
+export default function Home() {
   return (
-    <main className="mx-auto flex min-h-screen max-w-5xl flex-col justify-center px-6 py-20">
-      <p className="mb-4 text-xs font-medium uppercase tracking-[0.22em] text-clay">
-        Pathways
-      </p>
-      <h1 className="font-display max-w-2xl text-5xl leading-[1.03] md:text-6xl">
-        Two looks. Pick the one that feels right.
-      </h1>
-      <p className="mt-5 max-w-xl text-lg text-ink-soft">
-        The same website in two moods — light and dark. Open each and scroll.
-      </p>
-
-      <div className="mt-14 grid gap-5 md:grid-cols-2">
-        {samples.map((s) => (
-          <Link
-            key={s.href}
-            href={s.href}
-            className="group flex flex-col rounded-3xl border border-line bg-paper-2 p-8 transition-colors hover:bg-paper-3"
-          >
-            <span
-              className={`inline-flex w-fit items-center rounded-full px-3 py-1 text-xs font-medium ${s.accent}`}
-            >
-              {s.tag}
-            </span>
-            <h2 className="font-display mt-5 text-4xl">{s.title}</h2>
-            <p className="mt-3 flex-1 leading-relaxed text-ink-soft">{s.desc}</p>
-            <span className="mt-6 inline-flex items-center gap-1.5 font-medium text-ink">
-              View
-              <span className="transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </span>
-          </Link>
-        ))}
-      </div>
+    <main className="bg-snow">
+      <Nav />
+      <Hero />
+      <Trust />
+      <Services />
+      <Process />
+      <Stats />
+      <PhilosophyParallax
+        theme="dark"
+        eyebrow="Our philosophy"
+        heading="Not a normal"
+        italicWord="classroom."
+        body="Pathways is built around collaboration — a space to test ideas, ask questions and learn by doing, with people who have made the moves you want to make."
+        points={[
+          "Practical, discussion-led sessions",
+          "Mentors and facilitators",
+          "Space to test ideas",
+          "Support after the sessions",
+        ]}
+        images={philosophyImages}
+      />
+      <Sessions />
+      <Partners />
+      <CTA />
+      <Footer />
     </main>
   );
 }

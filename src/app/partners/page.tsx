@@ -4,6 +4,13 @@ import { Footer } from "@/components/sample-a/footer";
 import { Reveal } from "@/components/reveal";
 import { Container, Eyebrow, Button } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
+import { ScrollFade } from "@/components/sample-a/scroll-fade";
+import {
+  Breadcrumbs,
+  SoftCard,
+  NumberCard,
+  CTABand,
+} from "@/components/pages/shared/blocks";
 import { SupportGrid } from "@/components/pages/partners/support-grid";
 
 export const metadata: Metadata = {
@@ -74,6 +81,7 @@ export default function Page() {
         <Container className="relative py-20 md:py-28">
           <div className="max-w-3xl">
             <Reveal>
+              <Breadcrumbs page="Partners" />
               <Eyebrow>Partners</Eyebrow>
               <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
                 Help build the next generation of creative technologists.
@@ -88,7 +96,7 @@ export default function Page() {
 
             <Reveal delay={120}>
               <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Button href="#partner-cta" variant="primary" className="px-7 py-4">
+                <Button href="#partner-cta" variant="primary">
                   Partner with us
                 </Button>
                 <Button href="#support" variant="secondary" arrow={false}>
@@ -100,57 +108,55 @@ export default function Page() {
         </Container>
       </section>
 
-      {/* Why partnership matters */}
+      {/* Why partnership matters — split header + number cards */}
       <section className="relative bg-paper">
         <Splashes variant="a" />
         <Container className="relative py-20 md:py-28">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>Why partnership matters</Eyebrow>
-            <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-              More than information — access.
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-              Young people need more than information. They need access to
-              people, places, experience and opportunities. Partners help
-              participants understand what&apos;s possible, develop practical
-              knowledge and build connections beyond the programme.
-            </p>
-          </Reveal>
+          <ScrollFade>
+            <div className="grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-end">
+              <div>
+                <Eyebrow>Why partnership matters</Eyebrow>
+                <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
+                  More than information — access.
+                </h2>
+              </div>
+              <p className="text-lg leading-relaxed text-ink-soft">
+                Young people need more than information. They need access to
+                people, places, experience and opportunities. Partners help
+                participants understand what&apos;s possible, develop practical
+                knowledge and build connections beyond the programme.
+              </p>
+            </div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {WHY.map((w, i) => (
-              <Reveal key={w.title} delay={i * 90}>
-                <div className="flex h-full flex-col rounded-3xl bg-snow p-8 shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)] ring-1 ring-line/60">
-                  <span className="text-sm font-bold tracking-[0.15em] text-lime">
-                    0{i + 1}
-                  </span>
-                  <h3 className="mt-5 text-xl font-bold tracking-tight text-ink">
-                    {w.title}
-                  </h3>
-                  <p className="mt-3 leading-relaxed text-ink-soft">
+            <div className="mt-14 grid gap-5 md:grid-cols-3">
+              {WHY.map((w, i) => (
+                <Reveal key={w.title} delay={i * 90}>
+                  <NumberCard n={`0${i + 1}`} title={w.title}>
                     {w.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+                  </NumberCard>
+                </Reveal>
+              ))}
+            </div>
+          </ScrollFade>
         </Container>
       </section>
 
-      {/* Standout — ways to support (interactive) */}
+      {/* Ways to support — lively SoftCard grid */}
       <section id="support" className="bg-snow">
         <Container className="py-20 md:py-28">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>Ways to support Pathways</Eyebrow>
-            <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-              Eight ways to make a difference.
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-              Support looks different for everyone. Hover a way to support to see
-              how it helps — then tell us which fits you best.
-            </p>
-          </Reveal>
-          <SupportGrid />
+          <ScrollFade>
+            <div className="max-w-2xl">
+              <Eyebrow>Ways to support Pathways</Eyebrow>
+              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
+                Eight ways to make a difference.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+                Support looks different for everyone. Pick the ones that fit you
+                — every kind of help moves a young person forward.
+              </p>
+            </div>
+            <SupportGrid />
+          </ScrollFade>
         </Container>
       </section>
 
@@ -158,90 +164,56 @@ export default function Page() {
       <section className="relative bg-paper">
         <Splashes variant="d" />
         <Container className="relative py-20 md:py-28">
-          <Reveal className="max-w-2xl">
-            <Eyebrow>Current partners</Eyebrow>
-            <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
-              Who&apos;s building this with us.
-            </h2>
-            <p className="mt-5 text-lg leading-relaxed text-ink-soft">
-              A small group of organisations making the first stage of Pathways
-              possible.
-            </p>
-          </Reveal>
+          <ScrollFade>
+            <div className="max-w-2xl">
+              <Eyebrow>Current partners</Eyebrow>
+              <h2 className="mt-6 text-4xl font-bold leading-[1.05] tracking-tight text-ink md:text-5xl">
+                Who&apos;s building this with us.
+              </h2>
+              <p className="mt-5 text-lg leading-relaxed text-ink-soft">
+                A small group of organisations making the first stage of Pathways
+                possible.
+              </p>
+            </div>
 
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {PARTNERS.map((p, i) => (
-              <Reveal key={p.name} delay={i * 90}>
-                <div className="group flex h-full flex-col rounded-3xl bg-snow p-8 shadow-[0_18px_50px_-30px_rgba(14,18,24,0.3)] ring-1 ring-line/60 transition-all duration-300 hover:-translate-y-1">
-                  <div className="flex items-center justify-between">
-                    <span className="grid h-16 w-16 place-items-center rounded-2xl bg-paper-2 text-ink transition-colors duration-300 group-hover:bg-lime group-hover:text-lime-ink">
-                      <svg width="40" height="40" viewBox="0 0 64 64" fill="currentColor" aria-hidden>
-                        {p.mark}
-                      </svg>
-                    </span>
-                    <span className="rounded-full bg-paper-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-soft">
-                      {p.role}
-                    </span>
-                  </div>
-                  <h3 className="mt-6 text-xl font-bold leading-snug tracking-tight text-ink">
-                    {p.name}
-                  </h3>
-                  <p className="mt-3 flex-1 leading-relaxed text-ink-soft">
-                    {p.body}
-                  </p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+            <div className="mt-14 grid gap-5 md:grid-cols-3">
+              {PARTNERS.map((p, i) => (
+                <Reveal key={p.name} delay={i * 90}>
+                  <SoftCard className="group flex h-full flex-col">
+                    <div className="flex items-center justify-between">
+                      <span className="grid h-16 w-16 place-items-center rounded-2xl bg-paper-2 text-ink transition-colors duration-300 group-hover:bg-lime group-hover:text-lime-ink">
+                        <svg width="40" height="40" viewBox="0 0 64 64" fill="currentColor" aria-hidden>
+                          {p.mark}
+                        </svg>
+                      </span>
+                      <span className="rounded-full bg-paper-2 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-ink-soft">
+                        {p.role}
+                      </span>
+                    </div>
+                    <h3 className="mt-6 text-xl font-bold leading-snug tracking-tight text-ink">
+                      {p.name}
+                    </h3>
+                    <p className="mt-3 flex-1 leading-relaxed text-ink-soft">
+                      {p.body}
+                    </p>
+                  </SoftCard>
+                </Reveal>
+              ))}
+            </div>
+          </ScrollFade>
         </Container>
       </section>
 
       {/* Partner CTA */}
-      <section id="partner-cta" className="bg-snow">
-        <Container className="pb-24 pt-8 md:pb-32">
-          <Reveal>
-            <div className="relative overflow-hidden rounded-[36px] bg-midnight px-8 py-16 md:px-14 md:py-20">
-              <div aria-hidden className="pointer-events-none absolute inset-0">
-                <div className="absolute -right-10 -top-16 h-80 w-80 rounded-full bg-lime/25 blur-[110px]" />
-                <div className="absolute -bottom-20 left-0 h-80 w-80 rounded-full bg-orange/20 blur-[110px]" />
-              </div>
-
-              <div className="relative max-w-2xl">
-                <p className="mb-6 flex items-center gap-2.5 text-xs font-medium uppercase tracking-[0.22em] text-lime">
-                  <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-                  Become a partner
-                </p>
-                <h2 className="text-4xl font-bold leading-[1.05] tracking-tight text-snow md:text-5xl">
-                  Let&apos;s build clearer routes,{" "}
-                  <span className="text-lime">together.</span>
-                </h2>
-                <p className="mt-6 max-w-md text-lg leading-relaxed text-soft-grey">
-                  We&apos;d like to hear from organisations and professionals who
-                  can contribute knowledge, opportunities, space, mentorship or
-                  resources.
-                </p>
-                <div className="mt-9 flex flex-wrap items-center gap-3">
-                  <a
-                    href="#"
-                    className="group inline-flex items-center gap-2.5 rounded-full bg-lime px-7 py-4 text-[15px] font-semibold text-lime-ink transition-transform hover:scale-[1.03]"
-                  >
-                    Partner with us
-                    <span className="transition-transform duration-200 group-hover:translate-x-1">
-                      →
-                    </span>
-                  </a>
-                  <a
-                    href="mailto:hello@pathways.wales"
-                    className="rounded-full border border-soft-grey/25 px-7 py-4 text-[15px] font-semibold text-snow transition-colors hover:bg-snow hover:text-midnight"
-                  >
-                    Start a conversation
-                  </a>
-                </div>
-              </div>
-            </div>
-          </Reveal>
-        </Container>
-      </section>
+      <div id="partner-cta">
+        <CTABand
+          eyebrow="Become a partner"
+          heading="Let's build clearer routes, together."
+          sub="We'd like to hear from organisations and professionals who can contribute knowledge, opportunities, space, mentorship or resources."
+          primary={{ href: "#", label: "Partner with us" }}
+          secondary={{ href: "mailto:hello@pathways.wales", label: "Start a conversation" }}
+        />
+      </div>
 
       <Footer />
     </main>

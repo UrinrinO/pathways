@@ -54,10 +54,10 @@ export default function NotFound() {
             </span>
           </Link>
           <Link
-            href="/sample-a"
+            href="/programme"
             className="rounded-full border border-white/20 px-7 py-4 text-[15px] font-semibold text-snow transition-colors hover:bg-white/10"
           >
-            Explore Pathways
+            Explore the programme
           </Link>
         </div>
       </div>
