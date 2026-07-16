@@ -81,7 +81,7 @@ export function PartnersColumns() {
               {card.desc}
             </p>
             <a
-              href="/partners"
+              href="#"
               className="mt-auto inline-flex items-center gap-2 pt-7 text-sm font-medium text-soft-grey transition-colors duration-500 group-hover:text-lime"
             >
               {Arrow}

@@ -24,10 +24,10 @@ export function Hero() {
             clearer next move.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
-            <Button href="/join" variant="lime" className="px-8 py-4">
+            <Button href="#" variant="lime" className="px-8 py-4">
               Join Pathways
             </Button>
-            <Button href="/programme" variant="onDark" arrow={false}>
+            <Button href="#" variant="onDark" arrow={false}>
               Explore the Programme
             </Button>
           </div>

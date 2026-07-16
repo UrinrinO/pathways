@@ -50,7 +50,7 @@ export function SiteFooter() {
             {navLinks.map((l) => (
               <Link
                 key={l.label}
-                href={l.href}
+                href="#"
                 className="text-soft-grey/70 transition-colors hover:text-lime"
               >
                 {l.label}
@@ -83,7 +83,7 @@ export function SiteFooter() {
             {legalLinks.map((l) => (
               <Link
                 key={l.label}
-                href={l.href}
+                href="#"
                 className="transition-colors hover:text-soft-grey"
               >
                 {l.label}

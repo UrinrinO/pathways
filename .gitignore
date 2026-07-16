@@ -53,3 +53,6 @@ next-env.d.ts
 /mob2.mjs
 /mf.mjs
 /sc.mjs
+/pages.mjs
+/verify.mjs
+/mob3.mjs

@@ -66,7 +66,7 @@ export function CTA() {
 
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <a
-                  href="/join"
+                  href="#"
                   className="group inline-flex items-center gap-2.5 rounded-full bg-lime px-7 py-4 text-[15px] font-semibold text-lime-ink transition-transform hover:scale-[1.03]"
                 >
                   Register Your Interest
@@ -75,7 +75,7 @@ export function CTA() {
                   </span>
                 </a>
                 <a
-                  href="/refer"
+                  href="#"
                   className="rounded-full border border-white/20 px-7 py-4 text-[15px] font-semibold text-snow transition-colors hover:bg-snow hover:text-midnight"
                 >
                   Refer a Young Person

@@ -33,7 +33,7 @@ export function SiteNav() {
             {nav.map((item) => (
               <Link
                 key={item.label}
-                href={item.href}
+                href="#"
                 className="text-sm text-soft-grey transition-colors hover:text-snow"
               >
                 {item.label}
@@ -43,7 +43,7 @@ export function SiteNav() {
 
           <div className="flex items-center gap-3">
             <Link
-              href="/join"
+              href="#"
               className="group hidden items-center gap-2 rounded-full bg-lime px-5 py-2.5 text-sm font-semibold text-lime-ink transition-all duration-200 hover:brightness-105 sm:inline-flex"
             >
               Register Interest
@@ -75,7 +75,7 @@ export function SiteNav() {
               {nav.map((item) => (
                 <Link
                   key={item.label}
-                  href={item.href}
+                  href="#"
                   onClick={close}
                   className="rounded-lg px-2 py-2.5 text-base text-snow transition-colors hover:bg-white/5"
                 >
@@ -83,7 +83,7 @@ export function SiteNav() {
                 </Link>
               ))}
               <Link
-                href="/join"
+                href="#"
                 onClick={close}
                 className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-lime px-5 py-3 text-sm font-semibold text-lime-ink"
               >

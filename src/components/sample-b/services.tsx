@@ -21,7 +21,7 @@ export function Services() {
             />
             <div className="mt-9 flex justify-end">
               <a
-                href="/join"
+                href="#"
                 className="group inline-flex items-center gap-2.5 rounded-full bg-lime px-7 py-4 text-[15px] font-semibold text-lime-ink transition-all duration-200 hover:brightness-105"
               >
                 Start your Pathway

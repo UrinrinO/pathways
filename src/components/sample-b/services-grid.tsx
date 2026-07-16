@@ -89,7 +89,7 @@ export function ServicesGrid() {
                 </div>
 
                 <a
-                  href="/programme"
+                  href="#"
                   className="group mt-8 inline-flex w-fit items-center gap-1.5 border-b border-white/25 pb-1 text-sm font-medium text-snow"
                 >
                   View more
@@ -137,7 +137,7 @@ export function ServicesGrid() {
             <div className="mt-4 h-px bg-white/15" />
             <p className="mt-5 leading-relaxed text-soft-grey">{p.body}</p>
             <a
-              href="/programme"
+              href="#"
               className="group mt-6 inline-flex w-fit items-center gap-1.5 border-b border-white/25 pb-1 text-sm font-medium text-snow"
             >
               View more <span aria-hidden>→</span>

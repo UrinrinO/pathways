@@ -23,11 +23,11 @@ export function FinalCta() {
             community to move forward.
           </p>
           <div className="relative mt-10 flex flex-col justify-center gap-3 sm:flex-row">
-            <Button href="/join" variant="lime" arrow>
+            <Button href="#" variant="lime" arrow>
               Register Your Interest
             </Button>
             <Button
-              href="/refer"
+              href="#"
               className="border border-pine-ink/25 text-pine-ink hover:bg-pine-ink hover:text-pine"
             >
               Refer a Young Person
