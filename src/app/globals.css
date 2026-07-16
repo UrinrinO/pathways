@@ -1,26 +1,343 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------
+   Pathways — brand colour system (5 colours, clean sans)
+     Midnight · Panel · Soft Grey · Electric Lime · Warm Orange
+
+   Two themes share these tokens:
+   • Sample A — LIGHT base (default :root below)
+   • Sample B — DARK "Midnight" base (wrap in .theme-midnight)
+
+   Semantic neutral tokens (paper / ink / line …) are re-pointed per theme,
+   so the same utility classes render correctly in both.
+------------------------------------------------------------------ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Brand palette */
+  --midnight: #0c0f16; /* dark base */
+  --panel: #161b23;    /* raised dark surface */
+  --panel-2: #1e242e;  /* nested / hover dark surface */
+  --soft-grey: #aab1bc;
+  --lime: #8ce01e;     /* electric lime — primary accent */
+  --lime-ink: #0c0f16; /* text on lime */
+  --orange: #f4842b;   /* warm orange — secondary accent */
+
+  /* Semantic neutrals — LIGHT theme (Sample A) */
+  --paper: #f5f6f8;    /* page base */
+  --paper-2: #edeff2;  /* cards */
+  --paper-3: #e4e7ec;  /* hover / nested */
+  --snow: #ffffff;
+  --line: #dce0e6;     /* hairline */
+
+  --ink: #0e1218;      /* primary text (midnight) */
+  --ink-soft: #59616f; /* secondary text */
+  --ink-mute: #8994a1; /* captions / tertiary */
+
+  /* Dark feature blocks used on the light page (stats, philosophy, footer) */
+  --pine: #0c0f16;     /* → midnight */
+  --pine-ink: #e7eaef;
+  --carbon: #0c0f16;
+  --carbon-ink: #e7eaef;
+
+  /* clay was the old brown accent — now mapped to warm orange */
+  --clay: #f4842b;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  color-scheme: light;
+}
+
+/* -------- Sample B — DARK Midnight theme (scope) -------------------
+   Re-points the semantic neutrals to dark values. Every existing
+   `bg-paper` / `text-ink` / `border-line` inside this subtree flips.  */
+.theme-midnight {
+  --paper: #0c0f16;    /* midnight page base */
+  --paper-2: #161b23;  /* panel cards */
+  --paper-3: #1e242e;  /* nested / hover */
+  --snow: #161b23;
+  --line: #262d38;     /* dark hairline */
+
+  --ink: #edeff3;      /* near-white primary text */
+  --ink-soft: #aab1bc; /* soft grey secondary */
+  --ink-mute: #79808c;
+
+  --pine: #161b23;     /* dark feature blocks → panel (subtle contrast) */
+  --pine-ink: #edeff3;
+  --carbon: #0c0f16;
+  --carbon-ink: #edeff3;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  color-scheme: dark;
 }
 
 @theme inline {
+  --color-midnight: var(--midnight);
+  --color-panel: var(--panel);
+  --color-panel-2: var(--panel-2);
+  --color-soft-grey: var(--soft-grey);
+
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-paper-3: var(--paper-3);
+  --color-snow: var(--snow);
+  --color-line: var(--line);
+
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mute: var(--ink-mute);
+
+  --color-pine: var(--pine);
+  --color-pine-ink: var(--pine-ink);
+  --color-carbon: var(--carbon);
+  --color-carbon-ink: var(--carbon-ink);
+
+  --color-lime: var(--lime);
+  --color-lime-ink: var(--lime-ink);
+  --color-orange: var(--orange);
+  --color-clay: var(--clay);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --font-sans: var(--font-geist), system-ui, sans-serif;
+  --font-display: var(--font-geist), system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Bold display headings — clean sans (no serif) */
+.font-display {
+  font-family: var(--font-geist), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.02;
+}
+
+/* ------------------------------------------- Scroll-reveal animation
+   Premium ease-out (expo-ish) for a smooth, weighty settle. */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Looping stagger-in for the hero notes card (Granola-style transition) */
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.rise-in {
+  animation: rise-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes card-swap {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.card-swap {
+  animation: card-swap 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Active-card timer bar + slow-spinning badge */
+@keyframes progress-fill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes spin-slow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-slow {
+  animation: spin-slow 28s linear infinite;
+}
+
+/* Gentle idle float for the cohort pass */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+.float-y {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+/* Feathered image blend — dissolves a rectangular image into the background.
+   (Cut-out PNGs with their own alpha don't need this.) A reusable layout
+   motif for photography across sections. */
+.image-blend {
+  -webkit-mask-image: radial-gradient(120% 115% at 50% 45%, #000 46%, transparent 72%);
+  mask-image: radial-gradient(120% 115% at 50% 45%, #000 46%, transparent 72%);
+}
+.image-blend-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 58%, transparent 100%);
+}
+
+/* Hide scrollbars on horizontal carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Film scales + lifts in for a cinematic "transition" as it enters view */
+.film-reveal.reveal {
+  transform: translateY(30px) scale(0.93);
+  transition: opacity 1.1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.film-reveal.reveal-in {
+  transform: none;
+}
+
+/* ------------------------------------------------------- Marquee */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee 34s linear infinite;
+}
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------- Cinematic "film" placeholder — living aurora loop ---
+   Only used as a fallback where no real video is present. Brand tones. */
+.film-stage {
+  background: var(--midnight);
+}
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(56px);
+  opacity: 0.8;
+  will-change: transform;
+}
+.aurora-a {
+  width: 46%;
+  height: 70%;
+  left: -6%;
+  top: 6%;
+  background: var(--lime);
+  animation: float-a 16s ease-in-out infinite;
+}
+.aurora-b {
+  width: 48%;
+  height: 74%;
+  right: -8%;
+  top: 0%;
+  background: var(--orange);
+  animation: float-b 21s ease-in-out infinite;
+}
+.aurora-c {
+  width: 55%;
+  height: 80%;
+  left: 22%;
+  bottom: -18%;
+  background: var(--panel-2);
+  opacity: 0.95;
+  animation: float-c 26s ease-in-out infinite;
+}
+.aurora-d {
+  width: 34%;
+  height: 52%;
+  right: 24%;
+  top: 30%;
+  background: var(--lime);
+  opacity: 0.4;
+  animation: float-a 19s ease-in-out infinite reverse;
+}
+@keyframes float-a {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(18%, -12%) scale(1.18);
+  }
+}
+@keyframes float-b {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1.05);
+  }
+  50% {
+    transform: translate(-16%, 14%) scale(0.9);
+  }
+}
+@keyframes float-c {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-12%, -16%) scale(1.2);
+  }
+}
+.video-loop {
+  background: var(--midnight);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .marquee-track,
+  .video-loop,
+  .rise-in,
+  .card-swap,
+  .spin-slow,
+  .float-y {
+    animation: none;
+  }
+  .rise-in,
+  .card-swap {
+    opacity: 1;
+    transform: none;
+  }
 }
