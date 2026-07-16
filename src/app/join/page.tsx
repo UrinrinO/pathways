@@ -5,11 +5,9 @@ import { Container, Eyebrow } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
 import { Reveal } from "@/components/reveal";
 import { ScrollFade } from "@/components/sample-a/scroll-fade";
-import {
-  Breadcrumbs,
-  SoftCard,
-  NumberCard,
-} from "@/components/pages/shared/blocks";
+import { SoftCard, NumberCard } from "@/components/pages/shared/blocks";
+import { PageHero } from "@/components/pages/shared/page-hero";
+import { sessionShots } from "@/lib/images";
 import { RegistrationForm } from "@/components/pages/join/registration-form";
 
 export const metadata: Metadata = {
@@ -89,36 +87,14 @@ export default function JoinPage() {
       <Nav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-paper">
-        <Splashes variant="a" />
-        <Container className="relative py-20 md:py-28">
-          <ScrollFade className="max-w-3xl">
-            <Breadcrumbs page="Join Pathways" />
-            <Eyebrow>Register your interest</Eyebrow>
-            <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
-              You don&apos;t need to have it all figured out.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
-              Pathways is for young people aged 16–25 in Cardiff who want to
-              understand how creativity, technology and digital opportunity
-              connect. Bring your interests, questions and ideas — we&apos;ll
-              help you explore what could come next.
-            </p>
-            <div className="mt-9 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium text-ink-mute">
-              <span className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-lime" /> Free to join
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-lime" /> Ages 16–25
-              </span>
-              <span className="flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-lime" /> Launching
-                August 2026
-              </span>
-            </div>
-          </ScrollFade>
-        </Container>
-      </section>
+      <PageHero
+        crumb="Join"
+        heading="You don't need it all figured out."
+        sub="Bring your interests and ideas — we'll help with what comes next. Free, for 16–25s in Cardiff."
+        cta={{ label: "Start the form", href: "#register" }}
+        image={sessionShots[0]}
+        badge="Free"
+      />
 
       {/* Who can join — lime-tick checklist */}
       <section className="bg-snow">
@@ -208,7 +184,7 @@ export default function JoinPage() {
       </section>
 
       {/* Registration form — the standout */}
-      <section className="relative overflow-hidden bg-paper">
+      <section id="register" className="relative overflow-hidden bg-paper">
         <Splashes variant="b" />
         <Container className="relative py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">

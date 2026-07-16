@@ -8,20 +8,18 @@ import { ScrollFade } from "@/components/sample-a/scroll-fade";
 import { Parallax } from "@/components/motion/parallax";
 import { galleryImages } from "@/lib/images";
 import {
-  Breadcrumbs,
   SoftCard,
   NumberCard,
   CTABand,
   Section,
 } from "@/components/pages/shared/blocks";
+import { PageHero } from "@/components/pages/shared/page-hero";
 
 export const metadata: Metadata = {
   title: "About — Pathways",
   description:
     "Pathways is a creative tech hub for young people aged 16–25 in Cardiff, helping connect creativity to technology, digital tools and enterprise.",
 };
-
-const HERO_CHIPS = ["Ages 16–25", "Cardiff", "Free to join", "Creative tech hub"];
 
 const DISCIPLINES = [
   "Create",
@@ -77,36 +75,14 @@ export default function AboutPage() {
       <Nav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-paper">
-        <Splashes variant="a" />
-        <Container className="relative pb-20 pt-14 md:pb-28 md:pt-20">
-          <Reveal className="max-w-4xl">
-            <Breadcrumbs page="About" />
-            <Eyebrow>About Pathways</Eyebrow>
-            <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
-              Creativity is already there. Pathways helps connect it to what
-              comes next.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
-              A creative tech hub for young people aged 16–25 in Cardiff —
-              helping you explore how technology, digital tools and enterprise
-              can strengthen the interests, ideas and ambitions you already
-              have.
-            </p>
-          </Reveal>
-          <Reveal delay={140} className="mt-9 flex flex-wrap gap-2.5">
-            {HERO_CHIPS.map((c) => (
-              <span
-                key={c}
-                className="inline-flex items-center gap-2 rounded-full bg-snow px-4 py-2 text-sm font-medium text-ink-soft shadow-[0_12px_34px_-24px_rgba(14,18,24,0.5)]"
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-lime" />
-                {c}
-              </span>
-            ))}
-          </Reveal>
-        </Container>
-      </section>
+      <PageHero
+        crumb="About"
+        heading="Creativity, connected to tech."
+        sub="A creative tech hub for 16–25s in Cardiff — turning what you already make into a clearer next move."
+        cta={{ label: "Explore the programme", href: "/programme" }}
+        image={galleryImages[0]}
+        badge="Creative"
+      />
 
       {/* Why we created Pathways */}
       <Section className="bg-snow">

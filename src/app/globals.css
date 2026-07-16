@@ -198,6 +198,32 @@ body {
   animation: float-y 6s ease-in-out infinite;
 }
 
+/* Floating hero decorations — bob + a wobbling "dance" */
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-11px);
+  }
+}
+@keyframes dance {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(5deg);
+  }
+}
+.anim-bob {
+  animation: bob 5s ease-in-out infinite;
+}
+.anim-dance {
+  animation: dance 3.6s ease-in-out infinite;
+}
+
 /* Feathered image blend — dissolves a rectangular image into the background.
    (Cut-out PNGs with their own alpha don't need this.) A reusable layout
    motif for photography across sections. */
@@ -332,7 +358,9 @@ body {
   .rise-in,
   .card-swap,
   .spin-slow,
-  .float-y {
+  .float-y,
+  .anim-bob,
+  .anim-dance {
     animation: none;
   }
   .rise-in,

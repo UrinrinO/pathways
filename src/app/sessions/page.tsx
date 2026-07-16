@@ -7,11 +7,12 @@ import { Splashes } from "@/components/sample-a/splashes";
 import { ScrollFade } from "@/components/sample-a/scroll-fade";
 import { SessionExplorer } from "@/components/pages/sessions/session-explorer";
 import {
-  Breadcrumbs,
   NumberCard,
   CTABand,
   Section,
 } from "@/components/pages/shared/blocks";
+import { PageHero } from "@/components/pages/shared/page-hero";
+import { sessionShots } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Sessions — Pathways",
@@ -56,23 +57,14 @@ export default function SessionsPage() {
       <Nav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-paper">
-        <Splashes variant="c" />
-        <Container className="relative pb-20 pt-14 md:pb-28 md:pt-20">
-          <Reveal className="max-w-4xl">
-            <Breadcrumbs page="Sessions" />
-            <Eyebrow>The sessions</Eyebrow>
-            <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
-              Inside the Pathways sessions
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
-              Every session is built around real questions. What are you trying
-              to build? What&apos;s getting in the way? Where can technology
-              help? What could come next?
-            </p>
-          </Reveal>
-        </Container>
-      </section>
+      <PageHero
+        crumb="Sessions"
+        heading="Inside the sessions."
+        sub="Relaxed, hands-on and built around real questions — never rows of desks."
+        cta={{ label: "Register your interest", href: "/join" }}
+        image={sessionShots[2]}
+        badge="Hands-on"
+      />
 
       {/* Standout — interactive session explorer */}
       <Section className="bg-snow">

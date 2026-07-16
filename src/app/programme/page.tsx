@@ -7,11 +7,9 @@ import { Splashes } from "@/components/sample-a/splashes";
 import { ScrollFade } from "@/components/sample-a/scroll-fade";
 import { Counter } from "@/components/motion/counter";
 import { PhaseSwitch } from "@/components/pages/programme/phase-switch";
-import {
-  Breadcrumbs,
-  CTABand,
-  Section,
-} from "@/components/pages/shared/blocks";
+import { CTABand, Section } from "@/components/pages/shared/blocks";
+import { PageHero } from "@/components/pages/shared/page-hero";
+import { sessionShots } from "@/lib/images";
 
 export const metadata: Metadata = {
   title: "Programme — Pathways",
@@ -65,23 +63,14 @@ export default function ProgrammePage() {
       <Nav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-paper">
-        <Splashes variant="b" />
-        <Container className="relative pb-20 pt-14 md:pb-28 md:pt-20">
-          <Reveal className="max-w-4xl">
-            <Breadcrumbs page="Programme" />
-            <Eyebrow>The programme</Eyebrow>
-            <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
-              Six core sessions. Six months of continued support.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
-              A 12-month journey from uncertainty towards stronger skills,
-              clearer direction and real progression — split into two connected
-              phases.
-            </p>
-          </Reveal>
-        </Container>
-      </section>
+      <PageHero
+        crumb="Programme"
+        heading="Six sessions. Six months of support."
+        sub="A 12-month journey from curiosity to real progression — in two connected phases."
+        cta={{ label: "Join Pathways", href: "/join" }}
+        image={sessionShots[1]}
+        badge="12 months"
+      />
 
       {/* Standout — two-phase interactive view */}
       <Section className="bg-snow">

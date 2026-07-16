@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import { Nav } from "@/components/sample-a/nav";
 import { Footer } from "@/components/sample-a/footer";
 import { Reveal } from "@/components/reveal";
-import { Container, Eyebrow, Button } from "@/components/sample-a/ui";
+import { Container, Eyebrow } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
 import { ScrollFade } from "@/components/sample-a/scroll-fade";
 import {
-  Breadcrumbs,
   SoftCard,
   NumberCard,
   CTABand,
 } from "@/components/pages/shared/blocks";
+import { PageHero } from "@/components/pages/shared/page-hero";
+import { galleryImages } from "@/lib/images";
 import { SupportGrid } from "@/components/pages/partners/support-grid";
 
 export const metadata: Metadata = {
@@ -76,37 +77,14 @@ export default function Page() {
       <Nav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-snow">
-        <Splashes variant="c" />
-        <Container className="relative py-20 md:py-28">
-          <div className="max-w-3xl">
-            <Reveal>
-              <Breadcrumbs page="Partners" />
-              <Eyebrow>Partners</Eyebrow>
-              <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
-                Help build the next generation of creative technologists.
-              </h1>
-              <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft">
-                Pathways works with organisations, founders, professionals,
-                educators and community partners who want to help young people
-                access clearer routes into technology, creativity and
-                enterprise.
-              </p>
-            </Reveal>
-
-            <Reveal delay={120}>
-              <div className="mt-9 flex flex-wrap items-center gap-3">
-                <Button href="#partner-cta" variant="primary">
-                  Partner with us
-                </Button>
-                <Button href="#support" variant="secondary" arrow={false}>
-                  See ways to support
-                </Button>
-              </div>
-            </Reveal>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        crumb="Partners"
+        heading="Help build the next generation."
+        sub="Bring mentorship, space or opportunities to young creatives in Cardiff."
+        cta={{ label: "Partner with us", href: "#partner-cta" }}
+        image={galleryImages[2]}
+        badge="Let's build"
+      />
 
       {/* Why partnership matters — split header + number cards */}
       <section className="relative bg-paper">

@@ -5,11 +5,9 @@ import { Container, Eyebrow, Button } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
 import { Reveal } from "@/components/reveal";
 import { ScrollFade } from "@/components/sample-a/scroll-fade";
-import {
-  Breadcrumbs,
-  SoftCard,
-  CTABand,
-} from "@/components/pages/shared/blocks";
+import { SoftCard, CTABand } from "@/components/pages/shared/blocks";
+import { PageHero } from "@/components/pages/shared/page-hero";
+import { galleryImages } from "@/lib/images";
 import { ReferralForm } from "@/components/pages/refer/referral-form";
 import { ShareRegistration } from "@/components/pages/refer/share-registration";
 
@@ -40,23 +38,14 @@ export default function ReferPage() {
       <Nav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-paper">
-        <Splashes variant="d" />
-        <Container className="relative py-20 md:py-28">
-          <ScrollFade className="max-w-3xl">
-            <Breadcrumbs page="Refer a young person" />
-            <Eyebrow>Refer a young person</Eyebrow>
-            <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
-              Know someone who could thrive here?
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
-              If you know a young person aged 16–25 in Cardiff who&apos;d benefit
-              from Pathways, refer them or share the registration link —
-              we&apos;ll reach out with care.
-            </p>
-          </ScrollFade>
-        </Container>
-      </section>
+      <PageHero
+        crumb="Refer"
+        heading="Know someone who'd thrive here?"
+        sub="Refer a young person and we'll reach out with care."
+        cta={{ label: "Send a referral", href: "#refer-form" }}
+        image={galleryImages[0]}
+        badge="With care"
+      />
 
       {/* Reassurance strip */}
       <section className="bg-snow">
@@ -95,7 +84,7 @@ export default function ReferPage() {
       </section>
 
       {/* Referral form */}
-      <section className="relative overflow-hidden bg-paper">
+      <section id="refer-form" className="relative overflow-hidden bg-paper">
         <Splashes variant="a" />
         <Container className="relative py-20 md:py-28">
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">

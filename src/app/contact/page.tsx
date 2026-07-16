@@ -5,11 +5,9 @@ import { Container, Eyebrow, ArrowLink } from "@/components/sample-a/ui";
 import { Splashes } from "@/components/sample-a/splashes";
 import { Reveal } from "@/components/reveal";
 import { ScrollFade } from "@/components/sample-a/scroll-fade";
-import {
-  Breadcrumbs,
-  SoftCard,
-  CTABand,
-} from "@/components/pages/shared/blocks";
+import { SoftCard, CTABand } from "@/components/pages/shared/blocks";
+import { PageHero } from "@/components/pages/shared/page-hero";
+import { galleryImages } from "@/lib/images";
 import { ContactForm } from "@/components/pages/contact/contact-form";
 
 export const metadata: Metadata = {
@@ -51,23 +49,13 @@ export default function ContactPage() {
       <Nav />
 
       {/* Hero */}
-      <section className="relative overflow-hidden bg-paper">
-        <Splashes variant="b" />
-        <Container className="relative py-20 md:py-28">
-          <ScrollFade className="max-w-3xl">
-            <Breadcrumbs page="Contact" />
-            <Eyebrow>Contact</Eyebrow>
-            <h1 className="mt-6 text-5xl font-bold leading-[1.02] tracking-tight text-ink md:text-7xl">
-              Get in touch.
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl">
-              Whether you&apos;re thinking about joining Pathways, supporting the
-              programme or sharing an opportunity, we&apos;d like to hear from
-              you.
-            </p>
-          </ScrollFade>
-        </Container>
-      </section>
+      <PageHero
+        crumb="Contact"
+        heading="Get in touch."
+        sub="Joining, partnering or just curious — we'd like to hear from you."
+        image={galleryImages[3]}
+        badge="Hello"
+      />
 
       {/* Routed contact cards */}
       <section className="bg-snow">

@@ -7,17 +7,31 @@ import { Container, Eyebrow, Button } from "@/components/sample-a/ui";
  * page's design language so pages don't reinvent (and mangle) it.
  */
 
-/** Minimal, elegant breadcrumb (Halstein-style): Home / Page. */
+/** Neurixo-style pill breadcrumb: a rounded tag with Home › Page + a lime dot. */
 export function Breadcrumbs({ page }: { page: string }) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="mb-7 inline-flex items-center gap-3 text-[13px] font-medium"
+      className="mb-8 inline-flex items-center gap-2.5 rounded-full bg-paper-2 py-2 pl-3.5 pr-4 text-[13px] font-medium ring-1 ring-line/70"
     >
-      <Link href="/" className="text-ink-mute transition-colors hover:text-ink">
+      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-lime" />
+      <Link href="/" className="text-ink-soft transition-colors hover:text-ink">
         Home
       </Link>
-      <span aria-hidden className="h-3.5 w-px bg-ink/20" />
+      <svg
+        width="12"
+        height="12"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2.2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="text-ink-mute"
+        aria-hidden
+      >
+        <path d="M9 6l6 6-6 6" />
+      </svg>
       <span className="text-ink">{page}</span>
     </nav>
   );
